@@ -5,6 +5,7 @@ import com.example.jpa.entity.ProductInfo;
 import com.example.jpa.service.LocalProductService;
 import com.example.jpa.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,5 +42,15 @@ public class ProductController {
     @GetMapping(name = "/products", params = {"minPrice", "maxPrice"})
     public List<Product> filterProductByPrice(@RequestParam int minPrice, @RequestParam int maxPrice){
         return localProductService.filterByPrice(minPrice, maxPrice);
+    }
+
+    @GetMapping("/paged_products")
+    public Page<Product> getAllPagedProduct(){
+        return localProductService.getAllPagedProducts();
+    }
+
+    @GetMapping(name = "/sorted_products", params = "desc")
+    public List<Product> getAllSortedProduct(@RequestParam boolean desc){
+        return localProductService.getAllSortedProducts(desc);
     }
 }

@@ -4,6 +4,9 @@ import com.example.jpa.entity.Product;
 import com.example.jpa.entity.ProductInfo;
 import com.example.jpa.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -62,5 +65,20 @@ public class LocalProductService implements ProductService{
     @Override
     public List<Product> filterByPrice(int minPrice, int maxPrice){
         return productRepository.findByPriceGreaterThanAndPriceLessThan(minPrice, maxPrice);
+    }
+
+    @Override
+    public Page<Product> getAllPagedProducts(){
+        return productRepository.findAll(PageRequest.of(1, 20));
+    }
+
+    @Override
+    public List<Product> getAllSortedProducts(boolean desc){
+        if(desc){
+            return productRepository.findAll(new Sort(Sort.Direction.DESC, "price"));
+        }
+        else{
+            return productRepository.findAll(new Sort(Sort.Direction.ASC, "price"));
+        }
     }
 }
