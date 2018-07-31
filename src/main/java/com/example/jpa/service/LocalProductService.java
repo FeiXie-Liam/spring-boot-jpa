@@ -62,9 +62,21 @@ public class LocalProductService implements ProductService{
         }
     }
 
+
+
     @Override
     public List<Product> filterByPrice(int minPrice, int maxPrice){
         return productRepository.findByPriceGreaterThanAndPriceLessThan(minPrice, maxPrice);
+    }
+
+    @Override
+    public List<Product> filterByBrand(String brand){
+        return productRepository.findByBrandIs(brand);
+    }
+
+    @Override
+    public List<Product> filterByCategory(String category){
+        return productRepository.findByCategoryIs(category);
     }
 
     @Override

@@ -21,6 +21,10 @@ public interface ProductService {
 
     List<Product> filterByPrice(int minPrice, int maxPrice);
 
+    List<Product> filterByBrand(String brand);
+
+    List<Product> filterByCategory(String category);
+
     Page<Product> getAllPagedProducts();
 
     List<Product> getAllSortedProducts(boolean desc);

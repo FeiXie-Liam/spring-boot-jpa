@@ -39,9 +39,19 @@ public class ProductController {
         localProductService.updateById(id, product);
     }
 
-    @GetMapping(name = "/products", params = {"minPrice", "maxPrice"})
+    @GetMapping(value = "/products", params = {"minPrice", "maxPrice"})
     public List<Product> filterProductByPrice(@RequestParam int minPrice, @RequestParam int maxPrice){
         return localProductService.filterByPrice(minPrice, maxPrice);
+    }
+
+    @GetMapping(value = "/products", params = "category")
+    public List<Product> filterProductByCategory(@RequestParam String category){
+        return localProductService.filterByCategory(category);
+    }
+
+    @GetMapping(value = "/products", params = "brand")
+    public List<Product> filterProductByBrand(@RequestParam String brand){
+        return localProductService.filterByBrand(brand);
     }
 
     @GetMapping("/paged_products")
@@ -49,7 +59,7 @@ public class ProductController {
         return localProductService.getAllPagedProducts();
     }
 
-    @GetMapping(name = "/sorted_products", params = "desc")
+    @GetMapping(value = "/sorted_products", params = "desc")
     public List<Product> getAllSortedProduct(@RequestParam boolean desc){
         return localProductService.getAllSortedProducts(desc);
     }
