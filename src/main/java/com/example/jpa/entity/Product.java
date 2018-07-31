@@ -9,20 +9,14 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String name;
-
     private int price;
-
     private String category;
-
     private String brand;
-
     private String description;
 
     @Column(name = "production_date")
     private String productionDate;
-
     private String origin;
 
     public Product() {
@@ -54,5 +48,9 @@ public class Product {
 
     public String getOrigin() {
         return origin;
+    }
+
+    public String getName() {
+        return name;
     }
 }
