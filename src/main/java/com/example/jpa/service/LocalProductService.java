@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LocalProductService implements ProductService{
@@ -43,12 +44,23 @@ public class LocalProductService implements ProductService{
     }
 
     @Override
-    public void modifyById(int id){
+    public void updateById(int id, Product product){
+        Optional<Product> updatingProduct = productRepository.findById(id);
+        if(updatingProduct.isPresent()){
+            updatingProduct.get().setBrand(product.getBrand());
+            updatingProduct.get().setCategory(product.getCategory());
+            updatingProduct.get().setDescription(product.getDescription());
+            updatingProduct.get().setName(product.getName());
+            updatingProduct.get().setOrigin(product.getOrigin());
+            updatingProduct.get().setPrice(product.getPrice());
+            updatingProduct.get().setProductionDate(product.getProductionDate());
 
+            productRepository.save(updatingProduct.get());
+        }
     }
 
     @Override
-    public void filterByOrigin(String origin){
-
+    public List<Product> filterByPrice(int minPrice, int maxPrice){
+        return productRepository.findByPriceGreaterThanAndPriceLessThan(minPrice, maxPrice);
     }
 }

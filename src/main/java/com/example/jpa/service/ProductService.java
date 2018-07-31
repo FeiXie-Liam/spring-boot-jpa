@@ -16,8 +16,8 @@ public interface ProductService {
 
     void deleteById(int id);
 
-    void modifyById(int id);
+    void updateById(int id, Product product);
 
-    void filterByOrigin(String origin);
+    List<Product> filterByPrice(int minPrice, int maxPrice);
 
 }
