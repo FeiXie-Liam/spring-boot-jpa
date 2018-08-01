@@ -81,7 +81,7 @@ public class LocalProductService implements ProductService{
 
     @Override
     public Page<Product> getAllPagedProducts(){
-        return productRepository.findAll(PageRequest.of(1, 20));
+        return productRepository.findAll(PageRequest.of(0, 3));
     }
 
     @Override

@@ -24,7 +24,7 @@ public class ProductController {
         return localProductService.getAllProducts();
     }
 
-    @GetMapping("/product_list")
+    @GetMapping("/product-list")
     public List<ProductInfo> getProductList(){
         return localProductService.getProductList();
     }
@@ -54,12 +54,12 @@ public class ProductController {
         return localProductService.filterByBrand(brand);
     }
 
-    @GetMapping("/paged_products")
+    @GetMapping("/paged-products")
     public Page<Product> getAllPagedProduct(){
         return localProductService.getAllPagedProducts();
     }
 
-    @GetMapping(value = "/sorted_products", params = "desc")
+    @GetMapping(value = "/sorted-products", params = "desc")
     public List<Product> getAllSortedProduct(@RequestParam boolean desc){
         return localProductService.getAllSortedProducts(desc);
     }
